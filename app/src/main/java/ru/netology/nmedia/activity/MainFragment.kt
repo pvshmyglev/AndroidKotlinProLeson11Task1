@@ -1,4 +1,4 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,9 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import ru.netology.nmedia.adapter.PostAdapter
+import ru.netology.nmedia.viewmodel.PostViewModel
+import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {

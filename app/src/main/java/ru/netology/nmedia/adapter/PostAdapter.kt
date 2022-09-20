@@ -1,11 +1,15 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import ru.netology.nmedia.viewmodel.PostInteractionCommands
 import ru.netology.nmedia.databinding.CardPostBinding
+import ru.netology.nmedia.dto.Post
 
-class PostAdapter(private val interactionCommands: PostInteractionCommands) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
+class PostAdapter(private val interactionCommands: PostInteractionCommands) : ListAdapter<Post, PostViewHolder>(
+    PostDiffCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)

@@ -1,4 +1,4 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

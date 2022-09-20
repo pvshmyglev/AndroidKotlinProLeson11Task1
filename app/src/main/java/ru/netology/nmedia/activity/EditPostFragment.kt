@@ -1,4 +1,4 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.AndroidViewModel
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import ru.netology.nmedia.viewmodel.PostViewModel
 import ru.netology.nmedia.databinding.FragmentEditPostBinding
 import ru.netology.nmedia.util.hideKeyboard
 

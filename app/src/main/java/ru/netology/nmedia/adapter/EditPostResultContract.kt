@@ -1,9 +1,11 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.adapter
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
+import ru.netology.nmedia.activity.EditPostFragment
+import ru.netology.nmedia.dto.Post
 
 class EditPostResultContract : ActivityResultContract <Post, String?>() {
 

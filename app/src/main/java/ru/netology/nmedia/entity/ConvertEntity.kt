@@ -1,4 +1,7 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.entity
+
+import ru.netology.nmedia.dto.Attachment
+import ru.netology.nmedia.dto.Post
 
 internal fun List<PostEntity>.toPost() = map(PostEntity::toPost)
 internal fun List<Post>.toPostEntity() = map(Post::toPostEntity)
@@ -11,12 +14,13 @@ internal fun PostEntity.toPost() = Post (
     author = author,
     authorAvatar = authorAvatar,
     content = content,
-    video = video,
-    publishedDate = publishedDate,
-    likeByMe = likeByMe,
-    countLikes = countLikes,
-    countShare = countShare,
-    countVisibility = countVisibility,
+    video = "",
+    published = published,
+    likedByMe = likedByMe,
+    likes = likes,
+    shares = 0,
+    visibilities = 0,
+    attachment = attachment?.toAttachment()
 
 )
 
@@ -26,12 +30,25 @@ internal fun Post.toPostEntity() = PostEntity (
     author = author,
     authorAvatar = authorAvatar,
     content = content,
-    video = video,
-    publishedDate = publishedDate,
-    likeByMe = likeByMe,
-    countLikes = countLikes,
-    countShare = countShare,
-    countVisibility = countVisibility,
+    published = published,
+    likedByMe = likedByMe,
+    likes = likes,
+    attachment = attachment?.toAttachmentEmbeddable()
+)
+
+internal fun Attachment.toAttachmentEmbeddable() = AttachmentEmbeddable (
+
+    url = url,
+    description = description,
+    type = type,
+
+)
+
+internal fun AttachmentEmbeddable.toAttachment() = Attachment (
+
+    url = url,
+    description = description,
+    type = type,
 
 )
 

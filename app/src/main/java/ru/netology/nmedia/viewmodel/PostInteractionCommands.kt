@@ -1,4 +1,6 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.viewmodel
+
+import ru.netology.nmedia.dto.Post
 
 interface PostInteractionCommands {
 

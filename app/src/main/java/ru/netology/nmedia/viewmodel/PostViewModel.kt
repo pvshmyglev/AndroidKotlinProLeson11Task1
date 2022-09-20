@@ -1,4 +1,4 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
@@ -6,10 +6,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import okhttp3.internal.notify
-import okhttp3.internal.notifyAll
+import ru.netology.nmedia.model.FeedModel
+import ru.netology.nmedia.model.FeedModelState
+import ru.netology.nmedia.util.SingleLiveEvent
+import ru.netology.nmedia.db.AppDb
+import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.repository.PostRepository
+import ru.netology.nmedia.repository.PostRepositoryHTTPImpl
 
-class PostViewModel (application: Application) : AndroidViewModel(application), PostInteractionCommands{
+class PostViewModel (application: Application) : AndroidViewModel(application),
+    PostInteractionCommands {
 
     private val repository : PostRepository = PostRepositoryHTTPImpl(
         AppDb.getInstance(application).postDao()
@@ -35,7 +41,7 @@ class PostViewModel (application: Application) : AndroidViewModel(application), 
         "",
         "",
         "",
-        "",
+        0L,
         false,
         0,
         0,

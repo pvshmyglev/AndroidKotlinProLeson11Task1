@@ -1,10 +1,19 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.repository
 
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
-import java.lang.Exception
+import ru.netology.nmedia.*
+import ru.netology.nmedia.api.PostsApi
+import ru.netology.nmedia.dao.PostDao
+import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.entity.*
+import ru.netology.nmedia.entity.toPost
+import ru.netology.nmedia.entity.toPostEntity
+import ru.netology.nmedia.entity.toReadedPostEntity
+import ru.netology.nmedia.entity.toReadedPostsEntity
+import ru.netology.nmedia.exception.AppError
 
 
 class PostRepositoryHTTPImpl(
@@ -80,14 +89,14 @@ class PostRepositoryHTTPImpl(
 
         val postInBase = postDao.getById(id)
         val likedPost = postInBase.copy(
-            likeByMe = !postInBase.likeByMe,
-            countLikes = if (postInBase.likeByMe) {postInBase.countLikes - 1} else {postInBase.countLikes + 1}
+            likedByMe = !postInBase.likedByMe,
+            likes = if (postInBase.likedByMe) {postInBase.likes - 1} else {postInBase.likes + 1}
         )
 
         postDao.insertPost(likedPost)
 
         val result =
-            if (postInBase.likeByMe) { PostsApi.retrofitService.dislikeById(id) } else { PostsApi.retrofitService.likeById(id) }
+            if (postInBase.likedByMe) { PostsApi.retrofitService.dislikeById(id) } else { PostsApi.retrofitService.likeById(id) }
         if (!result.isSuccessful) {
             error("Response code: ${result.code()}")
         }

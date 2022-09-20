@@ -1,8 +1,9 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
+import ru.netology.nmedia.R
 
 class MainActivity : AppCompatActivity() {
 

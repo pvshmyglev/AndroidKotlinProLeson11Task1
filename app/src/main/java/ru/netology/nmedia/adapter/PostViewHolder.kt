@@ -1,4 +1,4 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.adapter
 
 import android.content.Intent
 import android.net.Uri
@@ -7,9 +7,12 @@ import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.FitCenter
+import ru.netology.nmedia.viewmodel.PostInteractionCommands
+import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
+import ru.netology.nmedia.dto.Post
 import java.text.DecimalFormat
+import java.util.*
 import kotlin.math.floor
 import kotlin.math.log10
 import kotlin.math.pow
@@ -19,11 +22,11 @@ class PostViewHolder (private val binding: CardPostBinding, private val interact
 
     fun bind (post: Post) = with(binding) {
         textViewAuthorName.text = post.author
-        textViewAuthorDate.text = post.publishedDate
+        textViewAuthorDate.text = Date(post.published).toString()
         textViewContent.text = post.content
-        buttonFavorite.text = compactDecimalFormat(post.countLikes)
-        buttonShare.text = compactDecimalFormat(post.countShare)
-        buttonVisibility.text = compactDecimalFormat(post.countVisibility)
+        buttonFavorite.text = compactDecimalFormat(post.likes)
+        buttonShare.text = compactDecimalFormat(post.shares)
+        buttonVisibility.text = compactDecimalFormat(post.visibilities)
 
         if (post.video.isBlank()) {
             videoContent.visibility = View.GONE
@@ -43,7 +46,7 @@ class PostViewHolder (private val binding: CardPostBinding, private val interact
                 .into(binding.imageViewAvatar)
         }
 
-        buttonFavorite.isChecked =  post.likeByMe
+        buttonFavorite.isChecked =  post.likedByMe
 
         buttonFavorite.setOnClickListener {
             buttonFavorite.isChecked = !buttonFavorite.isChecked

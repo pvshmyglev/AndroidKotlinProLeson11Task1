@@ -1,8 +1,10 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.entity
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ru.netology.nmedia.enumeration.AttachmentType
 
 @Entity(tableName = "posts")
 data class PostEntity(
@@ -15,24 +17,26 @@ data class PostEntity(
     val authorAvatar: String,
     @ColumnInfo(name = "content")
     val content: String,
-    @ColumnInfo(name = "video")
-    val video: String,
     @ColumnInfo(name = "publishedDate")
-    val publishedDate: String,
+    val published: Long,
     @ColumnInfo(name = "likeByMe")
-    val likeByMe: Boolean = false,
+    val likedByMe: Boolean = false,
     @ColumnInfo(name = "countLikes")
-    val countLikes: Int = 0,
-    @ColumnInfo(name = "countShare")
-    val countShare: Int = 0,
-    @ColumnInfo(name = "countVisibility")
-    val countVisibility: Int = 0
+    val likes: Int = 0,
+    @Embedded
+    var attachment: AttachmentEmbeddable?,
 
-)
+    )
 
 @Entity(tableName = "readedposts")
 data class ReadedPostsEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
     val id: Long,
+)
+
+data class AttachmentEmbeddable(
+    var url: String,
+    var description: String?,
+    var type: AttachmentType,
 )

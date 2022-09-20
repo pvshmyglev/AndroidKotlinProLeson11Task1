@@ -1,13 +1,13 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.model
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import ru.netology.nmedia.dto.Post
 
 data class FeedModel(
 
     val posts : List<Post> = emptyList(),
     val empty : Boolean = false,
 
-)
+    )
 
 data class FeedModelState(
 
